@@ -11,18 +11,18 @@ services:
       KC_DB_USERNAME: keycloak
       KC_DB_PASSWORD: password
       KC_DB_SCHEMA: public
-#      KEYCLOAK_ADMIN: admin
-#      KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
 #      KC_HTTPS_CERTIFICATE_FILE: /opt/keycloak/certs/localhostcert.pem
 #      KC_HTTPS_CERTIFICATE_KEY_FILE: /opt/keycloak/certs/localhostkey.pem
-      KC_PROXY: edge
-      KC_HOSTNAME_ADMIN_URL: https://localhost:8443
-      KC_HOSTNAME_URL: https://localhost:8443
+      # KC_PROXY: edge
+      KC_HOSTNAME_ADMIN_URL: http://localhost:8080
+      KC_HOSTNAME_URL: http://localhost:8080
     depends_on:
       keycloakdb:
         condition: service_healthy
-#    ports:
-#      - '8890:8080'
+    ports:
+      - '8080:8080'
 #      - '8843:8443'
 #    volumes:
 #      - ./certs:/opt/keycloak/certs
@@ -45,15 +45,15 @@ services:
     networks:
       - keycloak_network
 
-  keycloak_nginx:
-    build: ./nginx
-    ports:
-      - "8080:80"
-      - "8443:443"
-    depends_on:
-      - keycloak_web
-    networks:
-      - keycloak_network
+  # keycloak_nginx:
+  #   build: ./nginx
+  #   ports:
+  #     - "8080:80"
+  #     - "8443:443"
+  #   depends_on:
+  #     - keycloak_web
+  #   networks:
+  #     - keycloak_network
 
 volumes:
   postgres_data:
