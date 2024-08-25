@@ -4,4 +4,5 @@ includeBuild 'config-server'
 includeBuild 'eureka-server'
 includeBuild 'gateway'
 includeBuild 'resource-server'
-includeBuild 'messenger'
+includeBuild 'messenger'//todo remove
+includeBuild 'message-ms'
